@@ -1,5 +1,6 @@
 package com.crud.tasks.domain;
 
+
 import lombok.Data;
 
 
