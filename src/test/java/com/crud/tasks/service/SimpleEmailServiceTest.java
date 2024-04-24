@@ -23,7 +23,28 @@ class SimpleEmailServiceTest {
     private JavaMailSender javaMailSender;
 
     @Test
-    public void shouldSendEmail() {
+    public void shouldSendEmailWithoutCc() {
+        //Given
+        Mail mail = Mail.builder()
+                .mailTo("test@test.com")
+                .subject("Test")
+                .message("Test Message")
+                .build();
+
+        SimpleMailMessage expectedMailMessage = new SimpleMailMessage();
+        expectedMailMessage.setTo(mail.getMailTo());
+        expectedMailMessage.setSubject(mail.getSubject());
+        expectedMailMessage.setText(mail.getMessage());
+
+        //When
+        simpleEmailService.send(mail);
+
+        //Then
+        verify(javaMailSender, times(1)).send(expectedMailMessage);
+    }
+
+    @Test
+    public void shouldSendEmailWithCc() {
         //Given
         Mail mail = Mail.builder()
                 .mailTo("test@test.com")
