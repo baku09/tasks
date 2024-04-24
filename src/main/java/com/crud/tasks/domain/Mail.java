@@ -13,6 +13,7 @@ public class Mail {
     private final String message;
     private final String toCc;
 
+
     public void mailBuilder(final String mailTo, final String subject, final String message, final String toCc) {
         Mail.builder()
                 .mailTo(mailTo)
